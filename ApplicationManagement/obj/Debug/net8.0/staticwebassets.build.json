@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "W11gcormTA9qoDkpjqLhQMmhQ+lRTTSeVBOGiTIsGFU=",
+  "Source": "ApplicationManagement",
+  "BasePath": "_content/ApplicationManagement",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

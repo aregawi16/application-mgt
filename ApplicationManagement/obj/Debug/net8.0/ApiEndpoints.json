@@ -1,0 +1,117 @@
+[
+  {
+    "ContainingType": "ApplicationProgramController",
+    "Method": "GetAllPrograms",
+    "RelativePath": "api/ApplicationProgram",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApplicationManagement.Models.ApplicationProgram, ApplicationManagement, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApplicationProgramController",
+    "Method": "Create",
+    "RelativePath": "api/ApplicationProgram",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "program",
+        "Type": "ApplicationManagement.Models.ApplicationProgram",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApplicationProgramController",
+    "Method": "GetProgram",
+    "RelativePath": "api/ApplicationProgram/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ApplicationManagement.Models.ApplicationProgram",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApplicationProgramController",
+    "Method": "UpdateProgram",
+    "RelativePath": "api/ApplicationProgram/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "program",
+        "Type": "ApplicationManagement.Models.ApplicationProgram",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApplicationProgramController",
+    "Method": "DeleteProgram",
+    "RelativePath": "api/ApplicationProgram/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CandidateController",
+    "Method": "SubmitApplication",
+    "RelativePath": "api/Candidate/SubmitApplication",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "candidateAnswer",
+        "Type": "ApplicationManagement.Models.Candidate",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
