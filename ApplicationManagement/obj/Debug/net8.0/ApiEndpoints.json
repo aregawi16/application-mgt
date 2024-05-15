@@ -196,5 +196,31 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CandidateController",
+    "Method": "GetCandidatesByProgramAsync",
+    "RelativePath": "api/Candidate/program/{applicationProgramId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "applicationProgramId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApplicationManagement.Models.Candidate, ApplicationManagement, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

@@ -1,17 +1,16 @@
 ﻿namespace ApplicationManagement.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Candidate
     {
         [Key]
         public string id { get; set; }
         [Required]
-        
         public string ProgramId { get; set; }
-        public virtual ApplicationProgram ApplicationProgram  { get; set; }
-
         [Required]
         [StringLength(50, MinimumLength = 2)]
         public string FirstName { get; set; }

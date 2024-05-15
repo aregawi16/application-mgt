@@ -22,6 +22,13 @@ public class CandidateController : ControllerBase
         return Ok(candidateAnswers);
     }
 
+    [HttpGet("program/{applicationProgramId}")]
+    public async Task<ActionResult<IEnumerable<Candidate>>> GetCandidatesByProgramAsync(string applicationProgramId)
+    {
+        var candidateAnswers = await _cosmosDbService.GetCandidatesByProgramAsync(applicationProgramId);
+        return Ok(candidateAnswers);
+    }
+
     [HttpGet("{id}")]
     public async Task<ActionResult<Candidate>> GetCandidateAnswer(string id)
     {

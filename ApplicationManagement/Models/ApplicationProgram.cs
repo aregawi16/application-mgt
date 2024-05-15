@@ -14,7 +14,6 @@
         [StringLength(500, MinimumLength = 2)] 
         public string Description { get; set; }
         public List<Question> Questions { get; set; }
-        public virtual List<Candidate> Candidates { get; set; }
     }
 
     public class Question

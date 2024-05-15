@@ -91,6 +91,13 @@
 
         public async Task AddCandidateAnswerAsync(Candidate candidateAnswer)
         {
+            ApplicationProgram program = await GetProgramAsync(candidateAnswer.ProgramId);
+
+            if (program == null)
+            {
+                // Handle the case where the ApplicationProgram does not exist
+                throw new InvalidOperationException("The specified ApplicationProgram does not exist.");
+            }
             await _candidateAnswerContainer.CreateItemAsync(candidateAnswer, new PartitionKey(candidateAnswer.id));
         }
         public async Task<Candidate> GetCandidateAnswerAsync(string id)
@@ -102,6 +109,30 @@
             }
             catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
+                return null;
+            }
+        }
+        public async Task<List<Candidate>> GetCandidatesByProgramAsync(string applicationProgramId)
+        {
+            try
+            {
+                // Query to get all candidates with the specified ApplicationProgramId
+                var query = new QueryDefinition("SELECT * FROM c WHERE c.ApplicationProgramId = @applicationProgramId")
+                    .WithParameter("@applicationProgramId", applicationProgramId);
+
+                var iterator = _programContainer.GetItemQueryIterator<Candidate>(query);
+
+                List<Candidate> candidates = new List<Candidate>();
+                while (iterator.HasMoreResults)
+                {
+                    var response = await iterator.ReadNextAsync();
+                    candidates.AddRange(response.Resource);
+                }
+                return candidates;
+            }
+            catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                // Handle not found case, possibly log this depending on your needs
                 return null;
             }
         }
