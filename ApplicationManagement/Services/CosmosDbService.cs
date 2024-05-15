@@ -79,7 +79,7 @@
         public async Task<IEnumerable<Candidate>> GetAllCandidateAnswersAsync()
         {
             var query = "SELECT * FROM c";
-            var iterator = _programContainer.GetItemQueryIterator<Candidate>(query);
+            var iterator = _candidateAnswerContainer.GetItemQueryIterator<Candidate>(query);
             var programs = new List<Candidate>();
             while (iterator.HasMoreResults)
             {
@@ -117,10 +117,10 @@
             try
             {
                 // Query to get all candidates with the specified ApplicationProgramId
-                var query = new QueryDefinition("SELECT * FROM c WHERE c.ApplicationProgramId = @applicationProgramId")
+                var query = new QueryDefinition("SELECT * FROM c WHERE c.ProgramId = @applicationProgramId")
                     .WithParameter("@applicationProgramId", applicationProgramId);
 
-                var iterator = _programContainer.GetItemQueryIterator<Candidate>(query);
+                var iterator = _candidateAnswerContainer.GetItemQueryIterator<Candidate>(query);
 
                 List<Candidate> candidates = new List<Candidate>();
                 while (iterator.HasMoreResults)
@@ -139,12 +139,12 @@
 
         public async Task UpdateCandidateAnswerAsync(string id, Candidate candidate)
         {
-            await _programContainer.UpsertItemAsync(candidate, new PartitionKey(id));
+            await _candidateAnswerContainer.UpsertItemAsync(candidate, new PartitionKey(id));
         }
 
         public async Task DeleteCandidateAnswerAsync(string id)
         {
-            await _programContainer.DeleteItemAsync<Candidate>(id, new PartitionKey(id));
+            await _candidateAnswerContainer.DeleteItemAsync<Candidate>(id, new PartitionKey(id));
         }
 
 

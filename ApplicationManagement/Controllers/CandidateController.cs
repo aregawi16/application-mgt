@@ -10,7 +10,7 @@ public class CandidateController : ControllerBase
     private readonly CosmosDbService _cosmosDbService;
 
     public CandidateController(CosmosDbService cosmosDbService)
-    {   
+    {
         _cosmosDbService = cosmosDbService;
     }
 
@@ -42,7 +42,7 @@ public class CandidateController : ControllerBase
 
 
     // POST: api/Candidates/SubmitApplication
-    [HttpPost("")]
+    [HttpPost("SubmitApplication")]
     public async Task<IActionResult> SubmitApplication([FromBody] Candidate candidateAnswer)
     {
         if (!ModelState.IsValid)
@@ -54,8 +54,8 @@ public class CandidateController : ControllerBase
         await _cosmosDbService.AddCandidateAnswerAsync(candidateAnswer);
         return Ok(new { message = "Application submitted successfully!" });
     }
-  
-  
+
+
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateCandidateAnswer(string id, [FromBody] Candidate candidateAnswer)
     {

@@ -120,22 +120,6 @@
   },
   {
     "ContainingType": "CandidateController",
-    "Method": "SubmitApplication",
-    "RelativePath": "api/Candidate",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "candidateAnswer",
-        "Type": "ApplicationManagement.Models.Candidate",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "CandidateController",
     "Method": "GetCandidateAnswer",
     "RelativePath": "api/Candidate/{id}",
     "HttpMethod": "GET",
@@ -222,5 +206,21 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "CandidateController",
+    "Method": "SubmitApplication",
+    "RelativePath": "api/Candidate/SubmitApplication",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "candidateAnswer",
+        "Type": "ApplicationManagement.Models.Candidate",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
