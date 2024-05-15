@@ -37,14 +37,6 @@
         {
             await _programContainer.CreateItemAsync(program, new PartitionKey(program.id));
         }
-
-
-        public async Task AddCandidateAnswerAsync(Candidate candidateAnswer)
-        {
-            await _candidateAnswerContainer.CreateItemAsync(candidateAnswer, new PartitionKey(candidateAnswer.id));
-        }
-
-
         public async Task<IEnumerable<ApplicationProgram>> GetAllProgramsAsync()
         {
             var query = "SELECT * FROM c";
@@ -80,6 +72,53 @@
         {
             await _programContainer.DeleteItemAsync<ApplicationProgram>(id, new PartitionKey(id));
         }
+
+
+
+
+        public async Task<IEnumerable<Candidate>> GetAllCandidateAnswersAsync()
+        {
+            var query = "SELECT * FROM c";
+            var iterator = _programContainer.GetItemQueryIterator<Candidate>(query);
+            var programs = new List<Candidate>();
+            while (iterator.HasMoreResults)
+            {
+                var response = await iterator.ReadNextAsync();
+                programs.AddRange(response.ToList());
+            }
+            return programs;
+        }
+
+        public async Task AddCandidateAnswerAsync(Candidate candidateAnswer)
+        {
+            await _candidateAnswerContainer.CreateItemAsync(candidateAnswer, new PartitionKey(candidateAnswer.id));
+        }
+        public async Task<Candidate> GetCandidateAnswerAsync(string id)
+        {
+            try
+            {
+                var response = await _programContainer.ReadItemAsync<Candidate>(id, new PartitionKey(id));
+                return response.Resource;
+            }
+            catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                return null;
+            }
+        }
+
+        public async Task UpdateCandidateAnswerAsync(string id, Candidate candidate)
+        {
+            await _programContainer.UpsertItemAsync(candidate, new PartitionKey(id));
+        }
+
+        public async Task DeleteCandidateAnswerAsync(string id)
+        {
+            await _programContainer.DeleteItemAsync<Candidate>(id, new PartitionKey(id));
+        }
+
+
+
+
     }
 
 }
